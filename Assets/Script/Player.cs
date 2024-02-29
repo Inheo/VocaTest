@@ -34,6 +34,13 @@ namespace VacoTest
             }
         }
 
+        public void ResetState()
+        {
+            transform.position = Vector3.zero;
+            currentTime = 0;
+            UpdateMover();
+        }
+
         private bool IsTimeOut() => currentTime >= _updateTime;
 
         private void UpdateMover()
