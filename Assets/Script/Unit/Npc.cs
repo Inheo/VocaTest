@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using VacoTest.Command;
 
-namespace VacoTest
+namespace VacoTest.Unit
 {
     [RequireComponent(typeof(DirectionMover))]
-    public class Npc : Unit
+    public class Npc : AbstractUnit
     {
         private bool _isActive = true;
         public MoveCommandData _currentCommand;

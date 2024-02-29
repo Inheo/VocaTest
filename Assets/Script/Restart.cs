@@ -1,4 +1,5 @@
 using UnityEngine;
+using VacoTest.Unit;
 
 namespace VacoTest
 {

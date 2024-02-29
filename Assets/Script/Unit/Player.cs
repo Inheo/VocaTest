@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using VacoTest.Command;
 
-namespace VacoTest
+namespace VacoTest.Unit
 {
-    public class Player : Unit
+    public class Player : AbstractUnit
     {
         [SerializeField] private float _updateTime = 1f;
 

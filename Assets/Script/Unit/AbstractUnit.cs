@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-namespace VacoTest
+namespace VacoTest.Unit
 {
     [RequireComponent(typeof(DirectionMover))]
-    public abstract class Unit : MonoBehaviour
+    public abstract class AbstractUnit : MonoBehaviour
     {
         protected DirectionMover _mover;
         protected float _currentTime = 0;
