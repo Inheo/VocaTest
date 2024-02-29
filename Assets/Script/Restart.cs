@@ -1,12 +1,15 @@
 using UnityEngine;
-using VacoTest.Unit;
 
 namespace VacoTest
 {
     public class Restart : MonoBehaviour
     {
-        [SerializeField] private Player _player;
-        [SerializeField] private Npc _npc;
+        [SerializeField] private GameFactory _factory;
+
+        private void Start()
+        {
+            _factory.GetPlayer();
+        }
 
         private void Update()
         {
@@ -18,10 +21,13 @@ namespace VacoTest
 
         private void Do()
         {
-            var data = _player.GetData();
-            _player.ResetState();
-            _npc.SetData(data);
-            _npc.ResetState();
+            var player = _factory.GetPlayer();
+            var npc = _factory.GetNpc();
+            var data = player.GetData();
+
+            player.ResetState();
+            npc.SetData(data);
+            npc.ResetState();
         }
     }
 }
