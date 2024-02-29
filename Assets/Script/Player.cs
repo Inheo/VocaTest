@@ -14,25 +14,35 @@ namespace VacoTest
 
         protected override void UpdateMover()
         {
-            var direction = new Vector3(Random.Range(0f, 1f), 0f, Random.Range(0f, 1f)).normalized;
-            var speed = Random.Range(1f, 5f);
-            var command = new MoveCommandData(speed, _updateTime, direction);
-            Debug.Log($"{command.Speed}, {command.UpdateTime}, {command.Direction}");
-            _data.Add(command);
-            _mover.Set(speed, direction);
+            var command = GenerateData();
+            _mover.Set(command.Speed, command.Direction);
         }
 
         public Queue<MoveCommandData> GetData()
         {
-            var d = _data[_data.Count - 1];
-            d.UpdateTime = _currentTime;
-            _data[_data.Count - 1] = d;
+            CalculateTimeForLastData();
             return new Queue<MoveCommandData>(_data);
         }
 
         protected override void OnReset()
         {
             _data.Clear();
+        }
+
+        private MoveCommandData GenerateData()
+        {
+            var direction = new Vector3(Random.Range(0f, 1f), 0f, Random.Range(0f, 1f)).normalized;
+            var speed = Random.Range(1f, 5f);
+            var command = new MoveCommandData(speed, _updateTime, direction);
+            _data.Add(command);
+            return command;
+        }
+
+        private void CalculateTimeForLastData()
+        {
+            var d = _data[_data.Count - 1];
+            d.UpdateTime = _currentTime;
+            _data[_data.Count - 1] = d;
         }
     }
 }
