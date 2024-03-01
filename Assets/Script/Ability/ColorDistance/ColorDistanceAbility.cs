@@ -6,7 +6,7 @@ namespace VacoTest.Ability
 {
     public abstract class ColorDistanceAbility : MonoBehaviour
     {
-        [SerializeField] protected ColorDistanceAblityConfig _config;
+        [SerializeField] protected ColorDistanceAbilityConfig _config;
         [SerializeField] protected ColorDistanceAbilityDataStorage _storage;
 
         private Vector3 _sqrPassedDistance = Vector3.zero;

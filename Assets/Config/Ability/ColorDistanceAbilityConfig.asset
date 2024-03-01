@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed89dd65bf6af4479baad67e304cf85f, type: 3}
-  m_Name: ColorAblityConfig
+  m_Name: ColorDistanceAbilityConfig
   m_EditorClassIdentifier: 

@@ -3,7 +3,7 @@
 namespace VacoTest.Ability.Config
 {
     [CreateAssetMenu(menuName = "Ability/ColorDistance")]
-    public class ColorDistanceAblityConfig : ScriptableObject
+    public class ColorDistanceAbilityConfig : ScriptableObject
     {
         [field: SerializeField, Range(1f, 5f)] public float Distance { get; private set; } = 3;
 
