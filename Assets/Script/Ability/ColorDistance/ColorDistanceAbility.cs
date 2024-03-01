@@ -1,5 +1,6 @@
 using UnityEngine;
 using VacoTest.Ability.Config;
+using VacoTest.Unit;
 
 namespace VacoTest.Ability
 {
@@ -12,17 +13,27 @@ namespace VacoTest.Ability
         private Vector3 _lastVector;
         protected Color _startColor;
         private Renderer _renderer;
+        protected AbstractUnit _unit;
 
         private void Awake()
         {
+            _unit = GetComponent<AbstractUnit>();
             _renderer = GetComponent<Renderer>();
+            _startColor = _renderer.material.color;
+            _unit.OnReset += Reset;
             OnAwake();
         }
 
         private void Start()
         {
             _lastVector = transform.position;
-            _startColor = _renderer.material.color;
+        }
+
+        private void Reset()
+        {
+            _sqrPassedDistance = Vector3.zero;
+            _lastVector = transform.position;
+            _renderer.material.color = _startColor;
         }
 
         private void Update()
@@ -37,12 +48,19 @@ namespace VacoTest.Ability
             }
         }
 
+        private void OnDestroy()
+        {
+            _unit.OnReset -= Reset;
+            OnDestroyed();
+        }
+
         private void ChangeColor()
         {
             var color = GetColor();
             _renderer.material.color = color;
         }
 
+        protected virtual void OnDestroyed() { }
         protected virtual void OnAwake() { }
         protected abstract Color GetColor();
     }

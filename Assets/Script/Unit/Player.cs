@@ -6,9 +6,9 @@ namespace VacoTest.Unit
 {
     public class Player : AbstractUnit
     {
-        [SerializeField] private float _updateTime = 1f;
+        [SerializeField] private PlayerConfig _config;
 
-        public override float UpdateTime => _updateTime;
+        public override float UpdateTime => _config.UpdateTime;
 
         private List<MoveCommandData> _data = new List<MoveCommandData>();
 
@@ -32,9 +32,7 @@ namespace VacoTest.Unit
 
         private MoveCommandData GenerateData()
         {
-            var direction = new Vector3(Random.Range(0f, 1f), 0f, Random.Range(0f, 1f)).normalized;
-            var speed = Random.Range(1f, 5f);
-            var command = new MoveCommandData(speed, _updateTime, direction);
+            var command = _config.GetMoveCommandData();
             _data.Add(command);
             return command;
         }

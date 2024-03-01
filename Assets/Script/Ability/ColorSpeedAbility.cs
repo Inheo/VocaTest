@@ -9,15 +9,26 @@ namespace VacoTest.Ability
     {
         [SerializeField] private ColorSpeedAbilityConfig _config;
 
-        private AbstractUnit _unit;
+        protected Color _startColor;
         private Renderer _renderer;
+        private AbstractUnit _unit;
 
         private void Awake()
         {
             _renderer = GetComponent<Renderer>();
             _unit = GetComponent<AbstractUnit>();
+            _startColor = _renderer.material.color;
             _unit.OnSpeedUpdated += SpeedUpdated;
+            _unit.OnReset += ResetColor;
         }
+
+        private void OnDestroy()
+        {
+            _unit.OnSpeedUpdated -= SpeedUpdated;
+            _unit.OnReset -= ResetColor;
+        }
+
+        private void ResetColor() => _renderer.material.color = _startColor;
 
         private void SpeedUpdated(float speed)
         {
