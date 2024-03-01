@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6514618374462647872}
   - component: {fileID: 6514618374462647935}
   - component: {fileID: 6514618374462647934}
+  - component: {fileID: -731011970925357312}
+  - component: {fileID: -6771877012257469472}
   m_Layer: 0
   m_Name: Npc
   m_TagString: Untagged
@@ -113,3 +115,30 @@ MonoBehaviour:
     Speed: 0
     UpdateTime: 0
     Direction: {x: 0, y: 0, z: 0}
+--- !u!114 &-731011970925357312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6514618374462647933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbf82c2935a84ea6ba6aa266866bae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: 1ee03d4a6edf849a085a753aa9c53c39, type: 2}
+  _storage: {fileID: 11400000, guid: 87fe277bb32d741a59a51382f6fd7264, type: 2}
+--- !u!114 &-6771877012257469472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6514618374462647933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43645e00786944142a9fb295785131f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: 4ea71e19919634b0a8d44e0d2096b9f8, type: 2}
