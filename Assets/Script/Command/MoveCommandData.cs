@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace VacoTest.Command
 {
-    [System.Serializable]
     public struct MoveCommandData
     {
         public float Speed;
