@@ -12,10 +12,11 @@ namespace VacoTest.Unit
 
         private List<MoveCommandData> _data = new List<MoveCommandData>();
 
-        protected override void UpdateMover()
+        protected override MoveCommandData GetMoveData() => GenerateData();
+
+        protected override void OnAwake()
         {
-            var command = GenerateData();
-            _mover.Set(command.Speed, command.Direction);
+            OnReset += ClearData;
         }
 
         public Queue<MoveCommandData> GetData()
@@ -24,7 +25,7 @@ namespace VacoTest.Unit
             return new Queue<MoveCommandData>(_data);
         }
 
-        protected override void OnReset()
+        private void ClearData()
         {
             _data.Clear();
         }

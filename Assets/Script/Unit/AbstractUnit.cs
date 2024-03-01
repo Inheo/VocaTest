@@ -1,18 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using VacoTest.Command;
 
 namespace VacoTest.Unit
 {
     [RequireComponent(typeof(DirectionMover))]
     public abstract class AbstractUnit : MonoBehaviour
     {
-        protected DirectionMover _mover;
+        private DirectionMover _mover;
         protected float _currentTime = 0;
+
+        public event Action<float> OnSpeedUpdated;
+        public event Action OnReset;
 
         public abstract float UpdateTime { get; }
 
         private void Awake()
         {
             _mover = GetComponent<DirectionMover>();
+            OnAwake();
         }
 
         private void OnEnable()
@@ -34,17 +40,21 @@ namespace VacoTest.Unit
         public void ResetState()
         {
             transform.position = Vector3.zero;
-            OnReset();
+            OnReset?.Invoke();
             ResetTime();
             UpdateMover();
         }
 
+        private void UpdateMover()
+        {
+            var data = GetMoveData();
+            _mover.Set(data.Speed, data.Direction);
+            OnSpeedUpdated?.Invoke(data.Speed);
+        }
+
         private void ResetTime() => _currentTime = 0;
-
-        protected virtual void OnReset() { }
-
         protected virtual bool IsTimeOut() => _currentTime >= UpdateTime;
-
-        protected abstract void UpdateMover();
+        protected virtual void OnAwake() { }
+        protected abstract MoveCommandData GetMoveData();
     }
 }

@@ -8,7 +8,7 @@ namespace VacoTest.Unit
     public class Npc : AbstractUnit
     {
         private bool _isActive = true;
-        public MoveCommandData _currentCommand;
+        private MoveCommandData _currentCommand;
         private Queue<MoveCommandData> _data = new Queue<MoveCommandData>();
 
         public void SetData(Queue<MoveCommandData> data)
@@ -21,7 +21,7 @@ namespace VacoTest.Unit
 
         protected override bool IsTimeOut() => _isActive && base.IsTimeOut();
 
-        protected override void UpdateMover()
+        protected override MoveCommandData GetMoveData()
         {
             UpdateActiveFlag();
             if (_data.Count == 0)
@@ -29,7 +29,7 @@ namespace VacoTest.Unit
             else
                 _currentCommand = _data.Dequeue();
 
-            _mover.Set(_currentCommand.Speed, _currentCommand.Direction);
+            return _currentCommand;
         }
 
         private void UpdateActiveFlag() => _isActive = _data != null && _data.Count > 0;
